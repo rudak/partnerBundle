@@ -29,6 +29,7 @@ class PartnerController extends Controller
             'entities' => $entities,
         ));
     }
+
     /**
      * Creates a new Partner entity.
      *
@@ -36,7 +37,7 @@ class PartnerController extends Controller
     public function createAction(Request $request)
     {
         $entity = new Partner();
-        $form = $this->createCreateForm($entity);
+        $form   = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -123,7 +124,7 @@ class PartnerController extends Controller
             throw $this->createNotFoundException('Unable to find Partner entity.');
         }
 
-        $editForm = $this->createEditForm($entity);
+        $editForm   = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('RudakPartnerBundle:Partner:edit.html.twig', array(
@@ -134,12 +135,12 @@ class PartnerController extends Controller
     }
 
     /**
-    * Creates a form to edit a Partner entity.
-    *
-    * @param Partner $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Partner entity.
+     *
+     * @param Partner $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Partner $entity)
     {
         $form = $this->createForm(new PartnerType(), $entity, array(
@@ -151,6 +152,7 @@ class PartnerController extends Controller
 
         return $form;
     }
+
     /**
      * Edits an existing Partner entity.
      *
@@ -166,11 +168,12 @@ class PartnerController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+        $editForm   = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->flush();
+            exit('stop');
 
             return $this->redirect($this->generateUrl('admin_partners_edit', array('id' => $id)));
         }
@@ -181,6 +184,7 @@ class PartnerController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
     /**
      * Deletes a Partner entity.
      *
@@ -191,7 +195,7 @@ class PartnerController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $em     = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('RudakPartnerBundle:Partner')->find($id);
 
             if (!$entity) {
@@ -218,7 +222,6 @@ class PartnerController extends Controller
             ->setAction($this->generateUrl('admin_partners_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

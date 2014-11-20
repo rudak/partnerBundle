@@ -5,7 +5,7 @@ namespace Rudak\PartnerBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Rudak\BlogBundle\Utils\Resizer;
+use Rudak\PartnerBundle\Utils\Resizer;
 
 /**
  * Picture
@@ -17,16 +17,16 @@ use Rudak\BlogBundle\Utils\Resizer;
 class Picture
 {
 
-    private $defaultImagePath = 'no-image.jpg';
+    private $defaultImagePath = 'no-picture.jpg';
+    private $dir = 'uploads/partners/';
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -38,10 +38,8 @@ class Picture
      *      minWidth = 500,
      *      minWidthMessage = "La largeur de l'image est insufisante ({{ width }}px). La largeur minimum est de {{ min_width }}px.",
      *      minHeight = 350,
-     *      minHeightMessage = "La hauteur de l'image est insufisante ({{ width }}px). La hauteur minimum est de {{ min_width }}px.",
-     *      maxSize="6M"
+     *      minHeightMessage = "La hauteur de l'image est insufisante ({{ width }}px). La hauteur minimum est de {{ min_width }}px."
      * )
-     *
      */
     private $file;
     private $temp;
@@ -76,7 +74,6 @@ class Picture
     public function preUpload()
     {
         if (null !== $this->getFile()) {
-            // do whatever you want to generate a unique name
             $filename   = substr(sha1(uniqid(mt_rand(), true)), 0, 10);
             $this->path = $filename . '.' . $this->getFile()->guessExtension();
         }
@@ -92,9 +89,6 @@ class Picture
             return;
         }
 
-        // if there is an error when moving the file, an exception will
-        // be automatically thrown by move(). This will properly prevent
-        // the entity from being persisted to the database on error
         $this->getFile()->move($this->getUploadRootDir(), $this->path);
 
         $this->compressFile();
@@ -102,7 +96,7 @@ class Picture
         // check if we have an old image
         if (isset($this->temp)) {
             // delete the old image
-            if ($this->temp == $this->getDefaultImagePath()) {
+            if ($this->temp != $this->defaultImagePath) {
                 unlink($this->getUploadRootDir() . '/' . $this->temp);
             }
             // clear the temp image path
@@ -135,8 +129,8 @@ class Picture
     {
         if (is_file($this->getAbsolutePath())) {
             $resizer = new Resizer($this->getAbsolutePath());
-            $resizer->resizeImage(450, 340);
-            $resizer->saveImage($this->getAbsolutePath(), 80);
+            $resizer->resizeImage(1100, 840);
+            $resizer->saveImage($this->getAbsolutePath(), 85);
         }
     }
 
@@ -157,9 +151,11 @@ class Picture
             : $this->getUploadRootDir() . '/' . $this->path;
     }
 
-    private function getDefaultImagePath()
+    public function getDefaultImagePath()
     {
-        return $this->getUploadDir() . '/' . $this->defaultImagePath;
+        return null === $this->path
+            ? null
+            : $this->getUploadRootDir() . '/' . $this->defaultImagePath;
     }
 
     public function getWebPath()
@@ -171,16 +167,12 @@ class Picture
 
     protected function getUploadRootDir()
     {
-        // the absolute directory path where uploaded
-        // documents should be saved
         return __DIR__ . '/../../../../../../web/' . $this->getUploadDir();
     }
 
     protected function getUploadDir()
     {
-        // get rid of the __DIR__ so it doesn't screw up
-        // when displaying uploaded doc/image in the view.
-        return 'uploads/partners';
+        return $this->dir;
     }
 
     /**
