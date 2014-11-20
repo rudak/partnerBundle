@@ -1,0 +1,8 @@
+rudak_partner_admin_partners:
+    resource: "@RudakPartnerBundle/Resources/config/routing/partner.yml"
+    prefix:   /admin/partners
+
+rudak_partner_admin_partners_categ:
+    resource: "@RudakPartnerBundle/Resources/config/routing/category.yml"
+    prefix:   /admin/partners/categ
+

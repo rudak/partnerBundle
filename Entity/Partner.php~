@@ -1,0 +1,61 @@
+<?php
+
+namespace Rudak\PartnerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * Partner
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Rudak\PartnerBundle\Entity\PartnerRepository")
+ */
+class Partner
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var \stdClass
+     *
+     * @ORM\manyToOne(targetEntity="Category",cascade={"remove","persist"})
+     */
+    private $categories;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=60)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255)
+     */
+    private $description;
+
+    /**
+     * @Assert\Valid
+     * @var string
+     * @ORM\OneToOne(targetEntity="Picture",cascade={"remove","persist"})
+     */
+    private $picture;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=255)
+     */
+    private $url;
+
+
+}

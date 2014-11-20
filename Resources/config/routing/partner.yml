@@ -1,0 +1,30 @@
+admin_partners:
+    path:     /
+    defaults: { _controller: "RudakPartnerBundle:Partner:index" }
+
+admin_partners_show:
+    path:     /{id}/show
+    defaults: { _controller: "RudakPartnerBundle:Partner:show" }
+
+admin_partners_new:
+    path:     /new
+    defaults: { _controller: "RudakPartnerBundle:Partner:new" }
+
+admin_partners_create:
+    path:     /create
+    defaults: { _controller: "RudakPartnerBundle:Partner:create" }
+    requirements: { _method: post }
+
+admin_partners_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "RudakPartnerBundle:Partner:edit" }
+
+admin_partners_update:
+    path:     /{id}/update
+    defaults: { _controller: "RudakPartnerBundle:Partner:update" }
+    requirements: { _method: post|put }
+
+admin_partners_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "RudakPartnerBundle:Partner:delete" }
+    requirements: { _method: post|delete }
