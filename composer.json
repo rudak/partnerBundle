@@ -1,0 +1,23 @@
+{
+    "name": "rudak/partner-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony2 ContactBundle, a simple partner page for your website",
+    "keywords": ["partner"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kadur Arnaud",
+            "email": "contact@kadur-arnaud.fr",
+            "homepage": "http://kadur-arnaud.fr"
+        }
+    ],
+    "require": {
+    },
+    "autoload": {
+        "psr-0": {
+            "Rudak\\PartnerBundle": ""
+        }
+    },
+    "target-dir": "Rudak/PartnerBundle",
+    "minimum-stability": "stable"
+}
