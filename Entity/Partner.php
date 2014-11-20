@@ -26,7 +26,7 @@ class Partner
      *
      * @ORM\manyToOne(targetEntity="Category",cascade={"remove","persist"})
      */
-    private $categories;
+    private $category;
 
     /**
      * @var string
@@ -138,26 +138,26 @@ class Partner
     }
 
     /**
-     * Set categories
+     * Set category
      *
-     * @param \Rudak\PartnerBundle\Entity\Category $categories
+     * @param \Rudak\PartnerBundle\Entity\Category $category
      * @return Partner
      */
-    public function setCategories(\Rudak\PartnerBundle\Entity\Category $categories = null)
+    public function setCategory(\Rudak\PartnerBundle\Entity\Category $category = null)
     {
-        $this->categories = $categories;
+        $this->category = $category;
 
         return $this;
     }
 
     /**
-     * Get categories
+     * Get category
      *
      * @return \Rudak\PartnerBundle\Entity\Category 
      */
-    public function getCategories()
+    public function getCategory()
     {
-        return $this->categories;
+        return $this->category;
     }
 
     /**

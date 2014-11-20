@@ -18,7 +18,7 @@ class PartnerType extends AbstractType
             ->add('name')
             ->add('description')
             ->add('url')
-            ->add('categories')
+            ->add('category')
             ->add('picture', new PictureType(), array(
                 'label'    => false,
                 'required' => false

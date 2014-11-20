@@ -23,7 +23,7 @@ class PartnerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('RudakPartnerBundle:Partner')->findAll();
+        $entities = $em->getRepository('RudakPartnerBundle:Partner')->getPartnersList();
 
         return $this->render('RudakPartnerBundle:Partner:index.html.twig', array(
             'entities' => $entities,
@@ -173,7 +173,6 @@ class PartnerController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
-            exit('stop');
 
             return $this->redirect($this->generateUrl('admin_partners_edit', array('id' => $id)));
         }

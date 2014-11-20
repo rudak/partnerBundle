@@ -18,7 +18,7 @@ class Picture
 {
 
     private $defaultImagePath = 'no-picture.jpg';
-    private $dir = 'uploads/partners/';
+    private $dir = 'uploads/partners';
 
     /**
      * @ORM\Id
@@ -38,7 +38,8 @@ class Picture
      *      minWidth = 500,
      *      minWidthMessage = "La largeur de l'image est insufisante ({{ width }}px). La largeur minimum est de {{ min_width }}px.",
      *      minHeight = 350,
-     *      minHeightMessage = "La hauteur de l'image est insufisante ({{ width }}px). La hauteur minimum est de {{ min_width }}px."
+     *      minHeightMessage = "La hauteur de l'image est insufisante ({{ width }}px). La hauteur minimum est de {{ min_width }}px.",
+     *      maxSize="6M"
      * )
      */
     private $file;

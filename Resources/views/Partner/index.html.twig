@@ -1,45 +1,58 @@
-{% extends '::base.html.twig' %}
+{% extends admin_layout %}
 
-{% block body -%}
-    <h1>Partner list</h1>
+{% block layout %}
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ path('rcmAdminIndex') }}">Administration</a>
+        </li>
+        <li class="active">Partenaires</li>
+    </ol>
 
-    <table class="records_list">
+    <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Url</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th></th>
+            <th>Entreprise</th>
+            <th>Catégorie</th>
+            <th></th>
+        </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('admin_partners_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.name }}</td>
-                <td>{{ entity.description }}</td>
-                <td>{{ entity.url }}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('admin_partners_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('admin_partners_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                    {% if entity.picture %}
+                        <img src="{{ entity.picture.getwebpath|imagine_filter('admin_list') }}"
+                             alt="image_partner_{{ entity.id }}"/>
+                    {% else %}
+                        <img src="{{ 'uploads/partners/no-image.jpg'|imagine_filter('admin_list') }}"
+                             alt="no image"/>
+                    {% endif %}
+                </td>
+                <td>{{ entity.name }}</td>
+                <td>
+                    {{ entity.category }}
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_partners_show', { 'id': entity.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_partners_edit', { 'id': entity.id }) }}">edit</a>
+                        </li>
+                    </ul>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-        <ul>
+    <ul>
         <li>
             <a href="{{ path('admin_partners_new') }}">
                 Create a new entry
             </a>
         </li>
     </ul>
-    {% endblock %}
+{% endblock %}

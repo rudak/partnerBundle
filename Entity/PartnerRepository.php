@@ -12,4 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class PartnerRepository extends EntityRepository
 {
+    public function getPartnersList()
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->addSelect('pic')
+            ->addSelect('c')
+            ->leftJoin('p.picture', 'pic')
+            ->leftJoin('p.category', 'c')
+            ->orderBy('p.category', 'ASC')
+            ->addOrderBy('p.id', 'DESC')
+            ->getQuery();
+        return $qb->execute();
+    }
 }
