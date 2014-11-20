@@ -1,7 +1,16 @@
 {% extends admin_layout %}
 
 {% block layout %}
-    <h1>Partner</h1>
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ path('rcmAdminIndex') }}">Administration</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_partners') }}">Partenaires</a>
+
+        </li>
+        <li class="active">Voir un partenaire</li>
+    </ol>
 
     <table class="table">
         <tbody>
@@ -31,18 +40,8 @@
         </tr>
         </tbody>
     </table>
+    <hr/>
 
-    <ul class="record_actions">
-        <li>
-            <a href="{{ path('admin_partners') }}">
-                Back to the list
-            </a>
-        </li>
-        <li>
-            <a href="{{ path('admin_partners_edit', { 'id': entity.id }) }}">
-                Edit
-            </a>
-        </li>
-        <li>{{ form(delete_form) }}</li>
-    </ul>
+    {{ form(delete_form) }}
+
 {% endblock %}

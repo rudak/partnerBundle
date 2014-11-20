@@ -8,6 +8,12 @@
         <li class="active">Partenaires</li>
     </ol>
 
+    <p>
+        <a href="{{ path('admin_partners_new') }}" class="btn btn-success">
+            Ajouter un partenaire
+        </a>
+    </p>
+
     <table class="table">
         <thead>
         <tr>
@@ -34,25 +40,16 @@
                     {{ entity.category }}
                 </td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('admin_partners_show', { 'id': entity.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin_partners_edit', { 'id': entity.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <a href="{{ path('admin_partners_show', { 'id': entity.id }) }}" class="btn btn-default btn-xs">
+                        Voir
+                    </a>
+                    <a href="{{ path('admin_partners_edit', { 'id': entity.id }) }}" class="btn btn-default btn-xs">
+                        Modifier
+                    </a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_partners_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
 {% endblock %}

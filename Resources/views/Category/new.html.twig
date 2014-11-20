@@ -1,15 +1,16 @@
-{% extends '::base.html.twig' %}
+{% extends admin_layout %}
 
-{% block body -%}
-    <h1>Category creation</h1>
+{% block layout %}
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ path('rcmAdminIndex') }}">Administration</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_partners_categ') }}">Catégories</a>
+
+        </li>
+        <li class="active">Nouvelle catégorie</li>
+    </ol>
 
     {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_partners_categ') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
 {% endblock %}

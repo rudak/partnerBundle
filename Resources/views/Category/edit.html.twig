@@ -1,16 +1,18 @@
-{% extends '::base.html.twig' %}
+{% extends admin_layout %}
 
-{% block body -%}
-    <h1>Category edit</h1>
+{% block layout %}
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ path('rcmAdminIndex') }}">Administration</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_partners_categ') }}">Catégories</a>
+
+        </li>
+        <li class="active">Modifier une catégorie</li>
+    </ol>
 
     {{ form(edit_form) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_partners_categ') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    {{ form(delete_form) }}
 {% endblock %}

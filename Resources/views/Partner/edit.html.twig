@@ -1,6 +1,17 @@
 {% extends admin_layout %}
 
 {% block layout %}
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ path('rcmAdminIndex') }}">Administration</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_partners') }}">Partenaires</a>
+
+        </li>
+        <li class="active">Modifier un partenaire</li>
+    </ol>
+
     <p>
         {% if entity.picture %}
             <img src="{{ entity.picture.getwebpath|imagine_filter('admin_show') }}"
@@ -14,12 +25,5 @@
 
     {{ form(edit_form) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_partners') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    {{ form(delete_form) }}
 {% endblock %}
