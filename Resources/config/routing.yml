@@ -1,3 +1,7 @@
+rudak_partner_front:
+    path:     /partenaires-du-rcm
+    defaults: { _controller: "RudakPartnerBundle:Default:index" }
+
 rudak_partner_admin_partners:
     resource: "@RudakPartnerBundle/Resources/config/routing/partner.yml"
     prefix:   /admin/partners

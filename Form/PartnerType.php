@@ -5,6 +5,7 @@ namespace Rudak\PartnerBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Doctrine\ORM\EntityRepository;
 
 class PartnerType extends AbstractType
 {
@@ -15,17 +16,28 @@ class PartnerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
+            ->add('name', 'text', array(
+                'label' => 'Nom'
+            ))
             ->add('description')
-            ->add('url')
-            ->add('category')
+            ->add('url', 'text', array(
+                'label' => 'Lien de la catégorie'
+            ))
+            ->add('category', 'entity', array(
+                'label'         => 'Catégorie',
+                'class'         => 'RudakPartnerBundle:Category',
+                'property'      => 'name',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.name', 'ASC');
+                },
+            ))
             ->add('picture', new PictureType(), array(
                 'label'    => false,
                 'required' => false
-            ))
-        ;
+            ));
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

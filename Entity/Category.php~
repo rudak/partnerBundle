@@ -29,7 +29,7 @@ class Category
     private $name;
 
     /**
-     * @ORM\oneToMany(targetEntity="Partner",mappedBy="category")
+     * @ORM\oneToMany(targetEntity="Partner",mappedBy="Category")
      */
     private $partners;
 
@@ -72,44 +72,4 @@ class Category
     }
 
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->partners = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add partners
-     *
-     * @param \Rudak\PartnerBundle\Entity\Partner $partners
-     * @return Category
-     */
-    public function addPartner(\Rudak\PartnerBundle\Entity\Partner $partners)
-    {
-        $this->partners[] = $partners;
-
-        return $this;
-    }
-
-    /**
-     * Remove partners
-     *
-     * @param \Rudak\PartnerBundle\Entity\Partner $partners
-     */
-    public function removePartner(\Rudak\PartnerBundle\Entity\Partner $partners)
-    {
-        $this->partners->removeElement($partners);
-    }
-
-    /**
-     * Get partners
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getPartners()
-    {
-        return $this->partners;
-    }
 }

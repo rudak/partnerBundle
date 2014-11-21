@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class CategoryRepository extends EntityRepository
 {
+    public function getCategories()
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->addSelect('p')
+            ->leftJoin('c.partners', 'p')
+            ->getQuery();
+        return $qb->execute();
+    }
 }

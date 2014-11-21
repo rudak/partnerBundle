@@ -1,0 +1,17 @@
+{% extends 'RudakPartnerBundle::layout.html.twig' %}
+
+{% block layout %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Partenaires du RCM</h1>
+            {% for category in categs %}
+                <h3>{{ category.name }}</h3>
+                {% for partner in category.partners %}
+                    <div class="partner">
+                        <img src="{{ partner.picture.getwebpath|imagine_filter('partners_front') }}" alt="{{ partner.name }}"/>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
