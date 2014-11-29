@@ -1,5 +1,9 @@
 {% extends admin_layout %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('vendors/bootstrap-select/dist/css/bootstrap-select.min.css') }}"/>
+{% endblock %}
+
 {% block layout %}
     <ol class="breadcrumb">
         <li>
@@ -22,8 +26,24 @@
         {% endif %}
     </p>
 
-
+<div class="form_perso">
     {{ form(edit_form) }}
+</div>
 
     {{ form(delete_form) }}
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript"
+            src="{{ asset('vendors/bootstrap.file-input.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/bootstrap-select/dist/js/bootstrap-select.js') }}"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('input[type=file]').bootstrapFileInput({
+                title: 'Parcourir...'
+            });
+            $('.selectpicker').selectpicker();
+        });
+    </script>
 {% endblock %}

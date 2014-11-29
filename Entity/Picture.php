@@ -17,7 +17,7 @@ use Rudak\PartnerBundle\Utils\Resizer;
 class Picture
 {
 
-    private $defaultImagePath = 'no-picture.jpg';
+    private $defaultImagePath = 'no-image.jpg';
     private $dir = 'uploads/partners';
 
     /**

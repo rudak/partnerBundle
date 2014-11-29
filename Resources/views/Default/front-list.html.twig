@@ -2,28 +2,34 @@
 
 {% block layout %}
     <div class="row">
-        <div class="col-xs-9">
+        <div class="col-xs-12 col-md-9">
             <h1 class="mainTitle">Partenaires du RCM</h1>
 
-            <div id="partners">
-                {% for category in categs %}
-                    <h3>{{ category.name }}</h3>
-                    <div class="partner-box clearfix">
-                        {% for partner in category.partners %}
-                            <div class="partner">
-                                <a href="http://{{ partner.url }}" title="{{ partner.name }}" target="_blank">
-                                    <img src="{{ partner.picture.getwebpath|imagine_filter('partners_front') }}"
-                                         alt="logo {{ partner.name }}"/>
-                                </a>
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="col-xs-3">
-            <div class="pub">
+            {% for category in categs %}
+                <h3>{{ category.name|capitalize }}</h3>
+                <div class="row">
+                    {% for partner in category.partners %}
+                        <div class="col-xs-6 col-sm-4 col-lg-3">
+                            <a href="http://{{ partner.url }}" title="{{ partner.name }}" target="_blank"
+                               class="thumbnail">
+                                <img src="{{ partner.picture.getwebpath|imagine_filter('partners_front') }}"
+                                     alt="logo {{ partner.name }}"/>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
 
+        </div>
+        <div class="col-xs-12 col-md-3">
+            <div class="pub">
+                <H2>Publicité</H2>
+
+                <div class="well">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium aliquam commodi
+                    consectetur corporis debitis dolorem, dolorum ea expedita iusto laboriosam, maxime necessitatibus
+                    nobis non obcaecati omnis optio quaerat voluptas.
+                </div>
             </div>
         </div>
     </div>

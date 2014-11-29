@@ -5,7 +5,10 @@
         <li>
             <a href="{{ path('rcmAdminIndex') }}">Administration</a>
         </li>
-        <li class="active">Partenaires</li>
+        <li class="active">
+            <span class="badge">{{ entities|length }}</span>
+            Partenaires
+        </li>
     </ol>
 
     <p>

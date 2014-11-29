@@ -31,6 +31,9 @@ class PartnerType extends AbstractType
                     return $er->createQueryBuilder('c')
                         ->orderBy('c.name', 'ASC');
                 },
+                'attr'          => array(
+                    'class' => 'selectpicker'
+                ),
             ))
             ->add('picture', new PictureType(), array(
                 'label'    => false,

@@ -12,6 +12,12 @@
         <li class="active">Voir un partenaire</li>
     </ol>
 
+    <p>
+        <a href="{{ path('admin_partners_new') }}" class="btn btn-success">
+            Ajouter un partenaire
+        </a>
+    </p>
+
     <table class="table">
         <tbody>
         <tr>
@@ -41,7 +47,11 @@
         </tbody>
     </table>
     <hr/>
-
+    <p>
+        <a href="{{ path('admin_partners_edit', { 'id': entity.id }) }}" class="btn btn-warning">
+            Modifier
+        </a>
+    </p>
     {{ form(delete_form) }}
 
 {% endblock %}
