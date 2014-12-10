@@ -45,11 +45,6 @@ class Picture
     private $file;
     private $temp;
 
-    public function __construct()
-    {
-
-    }
-
     /**
      * Sets file.
      *
@@ -120,7 +115,7 @@ class Picture
     public function removeUpload()
     {
         if (isset($this->temp)) {
-            if ($this->temp != $this->getDefaultImagePath()) {
+            if ($this->temp != $this->getFullDefaultImagePath()) {
                 unlink($this->temp);
             }
         }
@@ -154,9 +149,12 @@ class Picture
 
     public function getDefaultImagePath()
     {
-        return null === $this->path
-            ? null
-            : $this->getUploadRootDir() . '/' . $this->defaultImagePath;
+        return $this->defaultImagePath;
+    }
+
+    private function getFullDefaultImagePath()
+    {
+        return $this->getUploadRootDir() . '/' . $this->getDefaultImagePath();
     }
 
     public function getWebPath()
@@ -171,7 +169,7 @@ class Picture
         return __DIR__ . '/../../../../../../web/' . $this->getUploadDir();
     }
 
-    protected function getUploadDir()
+    public function getUploadDir()
     {
         return $this->dir;
     }

@@ -25,7 +25,6 @@ class Partner
      * @var \stdClass
      *
      * @ORM\manyToOne(targetEntity="Category",
-     * cascade={"remove","persist"},
      * inversedBy="partners"
      * )
      */

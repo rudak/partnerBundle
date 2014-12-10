@@ -9,24 +9,29 @@ use Rudak\BlogBundle\Utils\Syllabeur;
 
 class LoadCategories extends AbstractFixture implements OrderedFixtureInterface
 {
+    const NOMBRE_CATEGORIES = 6;
+    const REFERENCE_NAME = 'RdkPartnerCateg_';
+
     /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
         $categs = array();
-        for ($i = 0; $i < 6; $i++) {
+        echo "PARTNER BUNDLE\n--------------\n";
+        echo "Creation categories : \n";
+        for ($i = 0; $i < self::NOMBRE_CATEGORIES; $i++) {
 
             $categs[$i] = New Category();
             $categs[$i]->setName(Syllabeur::getMots(rand(1, 2)));
 
             $manager->persist($categs[$i]);
-            $this->addReference('partnerCateg_' . $i, $categs[$i]);
-            echo "reference ajoutee : " . 'partnerCateg_' . $i . "\n";
+            $ref = self::getReferenceName($i);
+            $this->addReference($ref, $categs[$i]);
+            echo ' - ' . $ref . "\n";
         }
         echo "\n";
         $manager->flush();
-
     }
 
     /**
@@ -35,5 +40,11 @@ class LoadCategories extends AbstractFixture implements OrderedFixtureInterface
     public function getOrder()
     {
         return 102;
+    }
+
+
+    public static function getReferenceName($nb = null)
+    {
+        return self::REFERENCE_NAME . $nb;
     }
 }
