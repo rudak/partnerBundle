@@ -29,7 +29,10 @@ class Category
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Partner",mappedBy="category")
+     * @ORM\OneToMany(
+     * targetEntity="Rudak\PartnerBundle\Entity\Partner",
+     * mappedBy="category"
+     * )
      */
     private $partners;
 
