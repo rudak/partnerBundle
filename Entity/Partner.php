@@ -24,7 +24,7 @@ class Partner
     /**
      * @var \stdClass
      *
-     * @ORM\manyToOne(targetEntity="Rudak\PartnerBundle\Entity\Category",
+     * @ORM\ManyToOne(targetEntity="Rudak\PartnerBundle\Entity\Category",
      * inversedBy="partners"
      * )
      */
@@ -47,7 +47,7 @@ class Partner
     /**
      * @Assert\Valid
      * @var string
-     * @ORM\OneToOne(targetEntity="Picture",cascade={"remove","persist"})
+     * @ORM\OneToOne(targetEntity="Rudak\PartnerBundle\Entity\Picture",cascade={"remove","persist"})
      */
     private $picture;
 
