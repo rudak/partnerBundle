@@ -28,12 +28,12 @@ class LoadPartnerPictures extends AbstractFixture implements OrderedFixtureInter
 
             $url = sprintf($url, rand(290, 380), rand(300, 400));
 
-            $pc    = new PictureGrabber($url, $entities[$i]->getUploadDir(), self::PICTURE_PREFIX);
+            $pc = new PictureGrabber($url, $entities[$i]->getUploadDir(), self::PICTURE_PREFIX);
 
-            if($pc->getImage() === true){
+            if ($pc->getImage() === true) {
                 $image = $pc->getFileName();
             } else {
-                echo $pc->getError();
+                echo 'Erreur : ' . $pc->getError() . "\n";
                 $image = $entities[$i]->getDefaultImagePath();
             }
 
