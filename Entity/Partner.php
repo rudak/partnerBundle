@@ -24,7 +24,7 @@ class Partner
     /**
      * @var \stdClass
      *
-     * @ORM\manyToOne(targetEntity="Category",
+     * @ORM\manyToOne(targetEntity="Rudak\PartnerBundle\Entity\Category",
      * inversedBy="partners"
      * )
      */
