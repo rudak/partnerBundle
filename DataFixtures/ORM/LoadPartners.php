@@ -24,6 +24,7 @@ class LoadPartners extends AbstractFixture implements OrderedFixtureInterface
             $partners[$i]->setName(Namer::getLastName() . ' ' . Namer::getFirstName());
             $partners[$i]->setDescription(Syllabeur::getMots(8));
             $partners[$i]->setUrl(UrlMaker::getRandUrl());
+            $partners[$i]->setCurrent(true);
             $partners[$i]->setPicture($this->getReference(LoadPartnerPictures::getReferenceName($i)));
             $partners[$i]->setCategory($this->getReference(LoadCategories::getReferenceName(rand(0, 5))));
             $manager->persist($partners[$i]);
