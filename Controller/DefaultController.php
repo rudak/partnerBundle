@@ -16,4 +16,17 @@ class DefaultController extends Controller
             'categs' => $categs
         ));
     }
+
+    public function showAction($id, $slug)
+    {
+        $partner = $this->getDoctrine()->getManager()
+            ->getRepository('RudakPartnerBundle:Partner')
+            ->getPartnerById($id);
+
+        $this->get('MenuBundle.Handler')->setActiveItem('Partenaires');
+
+        return $this->render('RudakPartnerBundle:Default:show.html.twig', array(
+            'partner' => $partner
+        ));
+    }
 }

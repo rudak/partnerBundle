@@ -19,9 +19,10 @@ class PartnerType extends AbstractType
             ->add('name', 'text', array(
                 'label' => 'Nom'
             ))
-            ->add('description')
+            ->add('description', 'textarea')
             ->add('url', 'text', array(
-                'label' => 'Lien de la catégorie'
+                'label'    => 'Lien de la catégorie',
+                'required' => false
             ))
             ->add('category', 'entity', array(
                 'label'         => 'Catégorie',
@@ -38,6 +39,10 @@ class PartnerType extends AbstractType
             ->add('picture', new PictureType(), array(
                 'label'    => false,
                 'required' => false
+            ))
+            ->add('current', 'checkbox', array(
+                'required' => false,
+                'label'    => 'Partenaire Actuel'
             ));
     }
 

@@ -28,7 +28,7 @@
         </thead>
         <tbody>
         {% for entity in entities %}
-            <tr>
+            <tr {% if entity.current == false %}class="danger"{%  endif %}>
                 <td>
                     {% if entity.picture %}
                         <img src="{{ entity.picture.getwebpath|imagine_filter('admin_list') }}"

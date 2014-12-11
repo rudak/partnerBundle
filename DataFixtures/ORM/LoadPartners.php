@@ -5,9 +5,9 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use Rudak\BlogBundle\Utils\Namer;
-use Rudak\BlogBundle\Utils\UrlMaker;
-use Rudak\BlogBundle\Utils\Syllabeur;
+use Rudak\UtilsBundle\Namer;
+use Rudak\UtilsBundle\UrlMaker;
+use Rudak\UtilsBundle\Syllabeur;
 use Rudak\PartnerBundle\Entity\Partner;
 
 class LoadPartners extends AbstractFixture implements OrderedFixtureInterface

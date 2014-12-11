@@ -17,7 +17,8 @@ class CategoryRepository extends EntityRepository
         $qb = $this->createQueryBuilder('c')
             ->addSelect('p,pic')
             ->leftJoin('c.partners', 'p')
-            ->leftJoin('p.picture','pic')
+            ->leftJoin('p.picture', 'pic')
+            ->where('p.current = :current')->setParameter('current', true)
             ->getQuery();
         return $qb->execute();
     }

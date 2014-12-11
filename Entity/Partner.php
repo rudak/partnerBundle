@@ -40,7 +40,7 @@ class Partner
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description",  type="text", nullable=true)
      */
     private $description;
 
@@ -54,16 +54,22 @@ class Partner
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="url", type="string", length=255,nullable=true)
      */
     private $url;
 
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="current", type="boolean")
+     */
+    private $current;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -86,7 +92,7 @@ class Partner
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -109,7 +115,7 @@ class Partner
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -132,7 +138,7 @@ class Partner
     /**
      * Get url
      *
-     * @return string 
+     * @return string
      */
     public function getUrl()
     {
@@ -155,7 +161,7 @@ class Partner
     /**
      * Get category
      *
-     * @return \Rudak\PartnerBundle\Entity\Category 
+     * @return \Rudak\PartnerBundle\Entity\Category
      */
     public function getCategory()
     {
@@ -178,10 +184,28 @@ class Partner
     /**
      * Get picture
      *
-     * @return \Rudak\PartnerBundle\Entity\Picture 
+     * @return \Rudak\PartnerBundle\Entity\Picture
      */
     public function getPicture()
     {
         return $this->picture;
     }
+
+    /**
+     * @return boolean
+     */
+    public function isCurrent()
+    {
+        return $this->current;
+    }
+
+    /**
+     * @param boolean $current
+     */
+    public function setCurrent($current)
+    {
+        $this->current = $current;
+    }
+
+
 }
