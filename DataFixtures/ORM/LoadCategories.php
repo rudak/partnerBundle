@@ -5,7 +5,7 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Rudak\PartnerBundle\Entity\Category;
-use Rudak\BlogBundle\Utils\Syllabeur;
+use Rudak\UtilsBundle\Syllabeur;
 
 class LoadCategories extends AbstractFixture implements OrderedFixtureInterface
 {
