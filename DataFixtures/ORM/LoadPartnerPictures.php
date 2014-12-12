@@ -9,7 +9,7 @@ use Rudak\PictureGrabber\Model\PictureGrabber;
 
 class LoadPartnerPictures extends AbstractFixture implements OrderedFixtureInterface
 {
-    const NOMBRE_IMAGES = 85;
+    const NOMBRE_IMAGES = 25;
     const REFERENCE_NAME = 'RdkPartnerPicture_';
     const PICTURE_PREFIX = 'rp_';
 

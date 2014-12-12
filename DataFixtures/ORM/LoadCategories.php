@@ -5,6 +5,8 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Rudak\PartnerBundle\Entity\Category;
+use Rudak\UtilsBundle\FakeContentGenerator;
+use Rudak\UtilsBundle\Namer;
 use Rudak\UtilsBundle\Syllabeur;
 
 class LoadCategories extends AbstractFixture implements OrderedFixtureInterface
@@ -20,10 +22,13 @@ class LoadCategories extends AbstractFixture implements OrderedFixtureInterface
         $categs = array();
         echo "PARTNER BUNDLE\n--------------\n";
         echo "Creation categories : \n";
+
+        $fcg = new FakeContentGenerator();
+
         for ($i = 0; $i < self::NOMBRE_CATEGORIES; $i++) {
 
             $categs[$i] = New Category();
-            $categs[$i]->setName(Syllabeur::getMots(rand(1, 2)));
+            $categs[$i]->setName($fcg->getRandSentence(false, rand(3, 5)));
 
             $manager->persist($categs[$i]);
             $ref = self::getReferenceName($i);
