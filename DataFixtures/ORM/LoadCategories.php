@@ -28,7 +28,11 @@ class LoadCategories extends AbstractFixture implements OrderedFixtureInterface
         for ($i = 0; $i < self::NOMBRE_CATEGORIES; $i++) {
 
             $categs[$i] = New Category();
-            $categs[$i]->setName($fcg->getRandSentence(false, rand(3, 5)));
+            $categs[$i]->setName($fcg
+                ->setTags(false)
+                ->setSentenceLength(rand(3, 5))
+                ->setSentenceNumber(1)
+                ->getRandSentence());
 
             $manager->persist($categs[$i]);
             $ref = self::getReferenceName($i);

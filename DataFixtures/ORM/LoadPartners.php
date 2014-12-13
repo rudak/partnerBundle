@@ -5,9 +5,9 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
+use Rudak\UtilsBundle\FakeContentGenerator;
 use Rudak\UtilsBundle\Namer;
 use Rudak\UtilsBundle\UrlMaker;
-use Rudak\UtilsBundle\Syllabeur;
 use Rudak\PartnerBundle\Entity\Partner;
 
 class LoadPartners extends AbstractFixture implements OrderedFixtureInterface
@@ -19,10 +19,11 @@ class LoadPartners extends AbstractFixture implements OrderedFixtureInterface
     {
         echo "Creation des partenaires :\n";
         $partners = array();
+        $fcg      = new FakeContentGenerator(25, 1, false);
         for ($i = 0; $i <= LoadPartnerPictures::NOMBRE_IMAGES; $i++) {
             $partners[$i] = New Partner();
             $partners[$i]->setName(Namer::getLastName() . ' ' . Namer::getFirstName());
-            $partners[$i]->setDescription(Syllabeur::getMots(8));
+            $partners[$i]->setDescription($fcg->getRandSentence());
             $partners[$i]->setUrl(UrlMaker::getRandUrl());
             $partners[$i]->setCurrent(true);
             $partners[$i]->setPicture($this->getReference(LoadPartnerPictures::getReferenceName($i)));
