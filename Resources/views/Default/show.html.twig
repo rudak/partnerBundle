@@ -1,54 +1,39 @@
-{% extends 'RudakPartnerBundle::layout.html.twig' %}
+{% extends partners_layout %}
 
-{% block layout %}
-    <div class="row">
-        <div class="col-xs-12 col-md-9">
-            <h1 class="main_title">
-                Partenaires du RCM
-            </h1>
+{% block content %}
 
-            {% if partner.current == false %}
-                <div class="alert alert-warning" role="alert">
-                    <span class="glyphicon glyphicon-briefcase"></span>
-                    Ce partenaire n'a pas souhaité poursuivre sa contribution cette année.
-                </div>
-            {% endif %}
+    <h1 class="main_title">
+        Partenaires du RCM
+    </h1>
 
-            <div id="partner_infos">
-                <h2>
-                    {{ partner.name|upper }}
-                </h2>
-
-                <div id="image">
-                    <img src="{{ partner.picture.getwebpath|imagine_filter('partners_front_show') }}"
-                         alt="logo {{ partner.name }}" class="img-responsive"/>
-                </div>
-
-                <p id="description">
-                    {{ partner.description }}
-                </p>
-                {% if partner.url and partner.current %}
-                    <p id="url">
-                        <strong>Site du partenaire :</strong> <br/><br/>
-                        <a href="{{ partner.url }}" target="_blank" class="btn btn-xs btn-default">
-                            <span class="glyphicon glyphicon-link"></span>
-                            {{ partner.url }}
-                        </a>
-                    </p>
-                {% endif %}
-            </div>
-
+    {% if partner.current == false %}
+        <div class="alert alert-warning" role="alert">
+            <span class="glyphicon glyphicon-briefcase"></span>
+            Ce partenaire n'a pas souhaité poursuivre sa contribution cette année.
         </div>
-        <div class="col-xs-12 col-md-3">
-            <div class="pub">
-                <H2>Publicité</H2>
+    {% endif %}
 
-                <div class="well">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium aliquam commodi
-                    consectetur corporis debitis dolorem, dolorum ea expedita iusto laboriosam, maxime necessitatibus
-                    nobis non obcaecati omnis optio quaerat voluptas.
-                </div>
-            </div>
+    <div id="partner_infos">
+        <h2>
+            {{ partner.name|upper }}
+        </h2>
+
+        <div id="image">
+            <img src="{{ partner.picture.getwebpath|imagine_filter('partners_front_show') }}"
+                 alt="logo {{ partner.name }}" class="img-responsive"/>
         </div>
+
+        <p id="description">
+            {{ partner.description }}
+        </p>
+        {% if partner.url and partner.current %}
+            <p id="url">
+                <strong>Site du partenaire :</strong> <br/><br/>
+                <a href="{{ partner.url }}" target="_blank" class="btn btn-xs btn-default">
+                    <span class="glyphicon glyphicon-link"></span>
+                    {{ partner.url }}
+                </a>
+            </p>
+        {% endif %}
     </div>
 {% endblock %}

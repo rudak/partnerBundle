@@ -23,16 +23,10 @@ class LoadCategories extends AbstractFixture implements OrderedFixtureInterface
         echo "PARTNER BUNDLE\n--------------\n";
         echo "Creation categories : \n";
 
-        $fcg = new FakeContentGenerator();
-
         for ($i = 0; $i < self::NOMBRE_CATEGORIES; $i++) {
 
             $categs[$i] = New Category();
-            $categs[$i]->setName($fcg
-                ->setTags(false)
-                ->setSentenceLength(rand(3, 5))
-                ->setSentenceNumber(1)
-                ->getRandSentence());
+            $categs[$i]->setName(FakeContentGenerator::getSmallTitle());
 
             $manager->persist($categs[$i]);
             $ref = self::getReferenceName($i);

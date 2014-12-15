@@ -1,51 +1,34 @@
-{% extends 'RudakPartnerBundle::layout.html.twig' %}
+{% extends partners_layout %}
 
-{% block layout %}
-    <div class="row">
-        <div class="col-xs-12 col-md-9">
-            <h1 class="main_title">Partenaires du RCM</h1>
+{% block content %}
+    <h1 class="main_title">Partenaires du RCM</h1>
 
-            <div id="partners_list">
-                {% for category in categs %}
-                    <h3>{{ category.name|capitalize }}</h3>
-                    <div class="row">
-                        {% for partner in category.partners %}
-                            <div class="col-xs-6 col-sm-4 col-lg-3">
-                                <a href="{{ path('rudak_partner_show',{id:partner.id,slug:partner.name|slugit}) }}"
-                                   title="{{ partner.name }}" class="thumbnail">
-                                    <img src="{{ partner.picture.getwebpath|imagine_filter('partners_front') }}"
-                                         alt="logo {{ partner.name }}"/>
-                                </a>
-                            </div>
-                        {% endfor %}
+    <div id="partners_list">
+        {% for category in categs %}
+            <h3>{{ category.name|capitalize }}</h3>
+            <div class="row">
+                {% for partner in category.partners %}
+                    <div class="col-xs-6 col-sm-4 col-lg-3">
+                        <a href="{{ path('rudak_partner_show',{id:partner.id,slug:partner.name|slugit}) }}"
+                           title="{{ partner.name }}" class="thumbnail">
+                            <img src="{{ partner.picture.getwebpath|imagine_filter('partners_front') }}"
+                                 alt="logo {{ partner.name }}"/>
+                        </a>
                     </div>
                 {% endfor %}
-                <div id="remerciements">
-                    <p>
-                        Chers partenaires, <br/> Grâce à votre généreuse contribution, la saison du RCM
-                        s’est merveilleusement déroulée et les résultats du club ont rencontré un vif
-                        succès. Votre aide est pour beaucoup dans cette réussite et nous tenons aujourd’hui à vous
-                        témoigner
-                        toute la reconnaissance de notre notre club pour votre générosité.
-                        <br/>Avec nos sincères et chaleureux remerciements, recevez, chers partenaires, l’assurance de
-                        nos
-                        salutations distinguées.
-                    </p>
-                </div>
             </div>
-
-
-        </div>
-        <div class="col-xs-12 col-md-3">
-            <div class="pub">
-                <H2>Publicité</H2>
-
-                <div class="well">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium aliquam commodi
-                    consectetur corporis debitis dolorem, dolorum ea expedita iusto laboriosam, maxime necessitatibus
-                    nobis non obcaecati omnis optio quaerat voluptas.
-                </div>
-            </div>
+        {% endfor %}
+        <div id="remerciements">
+            <p>
+                Chers partenaires, <br/> Grâce à votre généreuse contribution, la saison du RCM
+                s’est merveilleusement déroulée et les résultats du club ont rencontré un vif
+                succès. Votre aide est pour beaucoup dans cette réussite et nous tenons aujourd’hui à vous
+                témoigner
+                toute la reconnaissance de notre notre club pour votre générosité.
+                <br/>Avec nos sincères et chaleureux remerciements, recevez, chers partenaires, l’assurance de
+                nos
+                salutations distinguées.
+            </p>
         </div>
     </div>
 {% endblock %}

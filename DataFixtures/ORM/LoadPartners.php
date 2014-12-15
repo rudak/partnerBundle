@@ -19,11 +19,11 @@ class LoadPartners extends AbstractFixture implements OrderedFixtureInterface
     {
         echo "Creation des partenaires :\n";
         $partners = array();
-        $fcg      = new FakeContentGenerator(25, 1, false);
+
         for ($i = 0; $i <= LoadPartnerPictures::NOMBRE_IMAGES; $i++) {
             $partners[$i] = New Partner();
             $partners[$i]->setName(Namer::getLastName() . ' ' . Namer::getFirstName());
-            $partners[$i]->setDescription($fcg->getRandSentence());
+            $partners[$i]->setDescription(FakeContentGenerator::getSentence());
             $partners[$i]->setUrl(UrlMaker::getRandUrl());
             $partners[$i]->setCurrent(true);
             $partners[$i]->setPicture($this->getReference(LoadPartnerPictures::getReferenceName($i)));
