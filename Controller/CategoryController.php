@@ -45,6 +45,11 @@ class CategoryController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                'Nouvelle catégorie crée avec succès !'
+            );
+
             return $this->redirect($this->generateUrl('admin_partners_categ_show', array('id' => $entity->getId())));
         }
 
@@ -181,7 +186,10 @@ class CategoryController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
-
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                'Catégorie modifiée avec succès !'
+            );
             return $this->redirect($this->generateUrl('admin_partners_categ_edit', array('id' => $id)));
         }
 
@@ -211,6 +219,11 @@ class CategoryController extends Controller
 
             $em->remove($entity);
             $em->flush();
+
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                'Catégorie \' <strong>' . $entity->getName() . '\'</strong> supprimée !'
+            );
         }
 
         return $this->redirect($this->generateUrl('admin_partners_categ'));

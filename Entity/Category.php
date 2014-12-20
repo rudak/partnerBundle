@@ -31,7 +31,8 @@ class Category
     /**
      * @ORM\OneToMany(
      * targetEntity="Rudak\PartnerBundle\Entity\Partner",
-     * mappedBy="category"
+     * mappedBy="category",
+     * cascade={"remove"}
      * )
      */
     private $partners;

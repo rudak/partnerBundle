@@ -44,7 +44,10 @@ class PartnerController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                'Partenaire créé avec succès !'
+            );
             return $this->redirect($this->generateUrl('admin_partners_show', array('id' => $entity->getId())));
         }
 
@@ -182,7 +185,10 @@ class PartnerController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
-
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                'Partenaire modifié avec succès !'
+            );
             return $this->redirect($this->generateUrl('admin_partners_edit', array('id' => $id)));
         }
 
@@ -212,6 +218,10 @@ class PartnerController extends Controller
 
             $em->remove($entity);
             $em->flush();
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                'Partenaire supprimé avec succès !'
+            );
         }
 
         return $this->redirect($this->generateUrl('admin_partners'));
