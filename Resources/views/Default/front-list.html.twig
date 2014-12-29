@@ -4,6 +4,18 @@
     <h1 class="main_title">Partenaires du RCM</h1>
 
     <div id="partners_list">
+        {#
+        <div id="remerciements">
+            <p>
+                Chers partenaires, <br/> Grâce à votre généreuse contribution, la saison du RCM
+                s’est merveilleusement déroulée et les résultats du club ont rencontré un vif
+                succès. Votre aide est pour beaucoup dans cette réussite et nous tenons aujourd’hui à vous
+                témoigner toute la reconnaissance de notre notre club pour votre générosité.
+                <br/>Avec nos sincères et chaleureux remerciements, recevez, chers partenaires, l’assurance de
+                nos salutations distinguées.
+            </p>
+        </div>
+        #}
         {% for category in categs %}
             <h3>{{ category.name|capitalize }}</h3>
             <div class="row">
@@ -18,17 +30,5 @@
                 {% endfor %}
             </div>
         {% endfor %}
-        <div id="remerciements">
-            <p>
-                Chers partenaires, <br/> Grâce à votre généreuse contribution, la saison du RCM
-                s’est merveilleusement déroulée et les résultats du club ont rencontré un vif
-                succès. Votre aide est pour beaucoup dans cette réussite et nous tenons aujourd’hui à vous
-                témoigner
-                toute la reconnaissance de notre notre club pour votre générosité.
-                <br/>Avec nos sincères et chaleureux remerciements, recevez, chers partenaires, l’assurance de
-                nos
-                salutations distinguées.
-            </p>
-        </div>
     </div>
 {% endblock %}
