@@ -38,4 +38,38 @@ class PartnerRepository extends EntityRepository
             ->getQuery();
         return $qb->execute();
     }
+
+
+    /**
+     * rand
+     */
+    public function getRandPartner()
+    {
+        $qb       = $this->createQueryBuilder('p')
+            ->addSelect('pic')
+            ->leftJoin('p.picture', 'pic')
+            ->where('p.current = 1')
+            ->setMaxResults(25)
+            ->getQuery();
+        $partners = $qb->execute();
+        shuffle($partners);
+
+        return $partners[0];
+    }
+
+    /**
+     * rand
+     */
+    public function getRandPartners($nb = 4)
+    {
+        $qb       = $this->createQueryBuilder('p')
+            ->addSelect('pic')
+            ->leftJoin('p.picture', 'pic')
+            ->where('p.current = 1')
+            ->setMaxResults(25)
+            ->getQuery();
+        $partners = $qb->execute();
+        shuffle($partners);
+        return array_slice($partners, 0, $nb);
+    }
 }

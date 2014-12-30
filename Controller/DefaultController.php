@@ -29,4 +29,33 @@ class DefaultController extends Controller
             'partner' => $partner
         ));
     }
+
+    public function devenirAction()
+    {
+        $this->get('MenuBundle.Handler')->setActiveItem('Partenaires');
+
+        return $this->render('RudakPartnerBundle:Default:devenir.html.twig');
+    }
+
+    public function randPartnerAction()
+    {
+        $partner = $this->getDoctrine()->getManager()
+            ->getRepository('RudakPartnerBundle:Partner')
+            ->getRandPartner();
+
+        return $this->render('RudakPartnerBundle:Render:rand-partner.html.twig', array(
+            'partner' => $partner
+        ));
+    }
+
+    public function randPartnersAction()
+    {
+        $partners = $this->getDoctrine()->getManager()
+            ->getRepository('RudakPartnerBundle:Partner')
+            ->getRandPartners();
+
+        return $this->render('RudakPartnerBundle:Render:rand-partners.html.twig', array(
+            'partners' => $partners
+        ));
+    }
 }

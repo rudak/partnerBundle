@@ -6,6 +6,10 @@ rudak_partner_show:
     path:     /partenaires-du-rcm/{id}/{slug}
     defaults: { _controller: "RudakPartnerBundle:Default:show" }
 
+rudak_partner_devenir:
+    path:     /devenir-partenaire-du-rcm
+    defaults: { _controller: "RudakPartnerBundle:Default:devenir" }
+
 rudak_partner_admin_partners:
     resource: "@RudakPartnerBundle/Resources/config/routing/partner.yml"
     prefix:   /admin/partners
