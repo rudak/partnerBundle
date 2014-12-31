@@ -2,11 +2,11 @@
 
 {% block content %}
     <h1 class="main_title">Partenaires du RCM</h1>
-<p>
-    <a class="btn btn-custom" href="{{ path('rudak_partner_devenir') }}">
-        Devenir partenaire
-    </a>
-</p>
+    <p>
+        <a class="btn btn-custom" href="{{ path('rudak_partner_devenir') }}">
+            Devenir partenaire
+        </a>
+    </p>
 
 
     <div id="partners_list">
@@ -27,11 +27,17 @@
             <div class="row">
                 {% for partner in category.partners %}
                     <div class="col-xs-6 col-sm-4 col-lg-3">
-                        <a href="{{ path('rudak_partner_show',{id:partner.id,slug:partner.name|slugit}) }}"
-                           title="{{ partner.name }}" class="thumbnail">
+                        <div class="thumbnail">
                             <img src="{{ partner.picture.getwebpath|imagine_filter('partners_front') }}"
                                  alt="logo {{ partner.name }}"/>
-                        </a>
+
+                            <div class="caption">
+                                <a href="{{ path('rudak_partner_show',{id:partner.id,slug:partner.name|slugit}) }}"
+                                   title="{{ partner.name }}" class="btn btn-custom btn-block">
+                                    {{ partner.name }}
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 {% endfor %}
             </div>

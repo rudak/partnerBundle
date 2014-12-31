@@ -1,12 +1,17 @@
 <div class="row">
     {% for partner in partners %}
         <div class="col-xs-6 col-sm-3">
-            <a class="thumbnail"
-               href="{{ path('rudak_partner_show',{id:partner.id,slug:partner.name|slugit}) }}"
-               title="Voir ce partenaire">
-                <img src="{{ partner.picture.getwebpath|imagine_filter('gallery_index_front') }}"
-                     alt="{{ partner.name }}"/>
-            </a>
+            <div class="thumbnail">
+                <img src="{{ partner.picture.getwebpath|imagine_filter('partners_front') }}"
+                     alt="logo {{ partner.name }}"/>
+
+                <div class="caption">
+                    <a href="{{ path('rudak_partner_show',{id:partner.id,slug:partner.name|slugit}) }}"
+                       title="{{ partner.name }}" class="btn btn-custom btn-block">
+                        {{ partner.name }}
+                    </a>
+                </div>
+            </div>
         </div>
     {% endfor %}
 </div>
