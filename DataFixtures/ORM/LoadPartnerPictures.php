@@ -9,7 +9,7 @@ use Rudak\PictureGrabber\Model\PictureGrabber;
 
 class LoadPartnerPictures extends AbstractFixture implements OrderedFixtureInterface
 {
-    const NOMBRE_IMAGES = 25;
+    const NOMBRE_IMAGES = 45;
     const REFERENCE_NAME = 'RdkPartnerPicture_';
     const PICTURE_PREFIX = 'rp_';
 
@@ -47,6 +47,7 @@ class LoadPartnerPictures extends AbstractFixture implements OrderedFixtureInter
         }
         echo "\n";
         $manager->flush();
+        echo "TERMINE\n -------------------- \n";
     }
 
     /**
@@ -54,7 +55,7 @@ class LoadPartnerPictures extends AbstractFixture implements OrderedFixtureInter
      */
     public function getOrder()
     {
-        return 104;
+        return 904;
     }
 
     public static function getReferenceName($nb = null)

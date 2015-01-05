@@ -42,7 +42,7 @@ class LoadCategories extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 102;
+        return 902;
     }
 
 

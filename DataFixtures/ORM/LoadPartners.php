@@ -33,6 +33,7 @@ class LoadPartners extends AbstractFixture implements OrderedFixtureInterface
         }
         echo "\n";
         $manager->flush();
+        echo "TERMINE\n -------------------- \n";
 
     }
 
@@ -41,6 +42,6 @@ class LoadPartners extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 106;
+        return 906;
     }
 }

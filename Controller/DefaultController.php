@@ -3,6 +3,7 @@
 namespace Rudak\PartnerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -42,6 +43,10 @@ class DefaultController extends Controller
         $partner = $this->getDoctrine()->getManager()
             ->getRepository('RudakPartnerBundle:Partner')
             ->getRandPartner();
+
+        if(!$partner){
+            return new Response('');
+        }
 
         return $this->render('RudakPartnerBundle:Render:rand-partner.html.twig', array(
             'partner' => $partner

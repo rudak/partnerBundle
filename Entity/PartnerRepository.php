@@ -54,7 +54,7 @@ class PartnerRepository extends EntityRepository
         $partners = $qb->execute();
         shuffle($partners);
 
-        return $partners[0];
+        return ($partners)?$partners[0]:null;
     }
 
     /**
