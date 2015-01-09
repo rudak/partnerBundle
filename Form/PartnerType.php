@@ -22,7 +22,10 @@ class PartnerType extends AbstractType
             ->add('description', 'textarea')
             ->add('url', 'text', array(
                 'label'    => 'Lien de la catégorie',
-                'required' => false
+                'required' => false,
+                'attr'     => array(
+                    'placeholder' => 'http://...',
+                )
             ))
             ->add('category', 'entity', array(
                 'label'         => 'Catégorie',
