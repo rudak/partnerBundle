@@ -24,7 +24,7 @@
         </div>
 
         <p id="description">
-            {{ partner.description }}
+            {{ partner.description|nl2br }}
         </p>
         {% if partner.url and partner.current %}
             <p id="url">
