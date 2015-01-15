@@ -1,5 +1,7 @@
 {% extends partners_layout %}
 
+{% block title %}Partenaire {{ partner.name|upper }} | {{ parent() }}{% endblock %}
+
 {% block content %}
 
     <h1 class="main_title">

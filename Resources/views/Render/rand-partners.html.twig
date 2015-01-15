@@ -1,17 +1,25 @@
 <div class="row">
-    {% for partner in partners %}
-        <div class="col-xs-6 col-sm-3">
-            <div class="thumbnail">
-                <img src="{{ partner.picture.getwebpath|imagine_filter('partners_front') }}"
-                     alt="logo {{ partner.name }}"/>
+    {% if partners|length %}
+        {% for partner in partners %}
+            <div class="col-xs-6 col-sm-3">
+                <div class="thumbnail">
+                    <img src="{{ partner.picture.getwebpath|imagine_filter('partners_front') }}"
+                         alt="logo {{ partner.name }}"/>
 
-                <div class="caption">
-                    <a href="{{ path('rudak_partner_show',{id:partner.id,slug:partner.name|slugit}) }}"
-                       title="{{ partner.name }}" class="btn btn-custom btn-block">
-                        {{ partner.name }}
-                    </a>
+                    <div class="caption">
+                        <a href="{{ path('rudak_partner_show',{id:partner.id,slug:partner.name|slugit}) }}"
+                           title="{{ partner.name }}" class="btn btn-custom btn-block">
+                            {{ partner.name }}
+                        </a>
+                    </div>
                 </div>
             </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-xs-12">
+            <p>
+                En attente de partenaires....
+            </p>
         </div>
-    {% endfor %}
+    {% endif %}
 </div>
