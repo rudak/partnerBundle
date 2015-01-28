@@ -45,6 +45,8 @@ class CategoryController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            $this->logging($this->getUser()->getUsername(), sprintf('Création d\'une galerie [#%d]', $entity->getId()), 'Partners');
+
             $this->get('session')->getFlashBag()->add(
                 'success',
                 'Nouvelle catégorie crée avec succès !'
@@ -190,6 +192,8 @@ class CategoryController extends Controller
                 'success',
                 'Catégorie modifiée avec succès !'
             );
+            $this->logging($this->getUser()->getUsername(), sprintf('Modification d\'une galerie [#%d]', $entity->getId()), 'Partners');
+
             return $this->redirect($this->generateUrl('admin_partners_categ_edit', array('id' => $id)));
         }
 
@@ -216,6 +220,7 @@ class CategoryController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Category entity.');
             }
+            $this->logging($this->getUser()->getUsername(), sprintf('Suppression d\'une galerie [#%d]', $entity->getId()), 'Partners');
 
             $em->remove($entity);
             $em->flush();
@@ -247,5 +252,14 @@ class CategoryController extends Controller
                     'class' => 'btn btn-danger'
                 )))
             ->getForm();
+    }
+
+    private function logging($user, $action, $category)
+    {
+        try {
+            $OwnLogger = $this->get('rudak.own.logger');
+            $OwnLogger->addEntry($user, $action, $category, new \DateTime());
+        } catch (\Exception $e) {
+        }
     }
 }

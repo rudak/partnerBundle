@@ -48,6 +48,8 @@ class PartnerController extends Controller
                 'success',
                 'Partenaire créé avec succès !'
             );
+            $this->logging($this->getUser()->getUsername(), sprintf('Ajout d\'un partenaire [#%d]', $entity->getId()), 'Partners');
+
             return $this->redirect($this->generateUrl('admin_partners_show', array('id' => $entity->getId())));
         }
 
@@ -189,6 +191,8 @@ class PartnerController extends Controller
                 'success',
                 'Partenaire modifié avec succès !'
             );
+            $this->logging($this->getUser()->getUsername(), sprintf('Modification d\'un partenaire [#%d]', $entity->getId()), 'Partners');
+
             return $this->redirect($this->generateUrl('admin_partners_edit', array('id' => $id)));
         }
 
@@ -215,6 +219,8 @@ class PartnerController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Partner entity.');
             }
+
+            $this->logging($this->getUser()->getUsername(), sprintf('Suppression d\'un partenaire [#%d]', $entity->getId()), 'Partners');
 
             $em->remove($entity);
             $em->flush();
@@ -245,5 +251,14 @@ class PartnerController extends Controller
                     'class' => 'btn btn-danger'
                 )))
             ->getForm();
+    }
+
+    private function logging($user, $action, $category)
+    {
+        try {
+            $OwnLogger = $this->get('rudak.own.logger');
+            $OwnLogger->addEntry($user, $action, $category, new \DateTime());
+        } catch (\Exception $e) {
+        }
     }
 }
