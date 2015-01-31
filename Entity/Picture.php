@@ -35,10 +35,10 @@ class Picture
 
     /**
      * @Assert\Image(
-     *      minWidth = 500,
+     *      minWidth = 440,
      *      minWidthMessage = "La largeur de l'image est insufisante ({{ width }}px). La largeur minimum est de {{ min_width }}px.",
-     *      minHeight = 350,
-     *      minHeightMessage = "La hauteur de l'image est insufisante ({{ width }}px). La hauteur minimum est de {{ min_width }}px.",
+     *      minHeight = 320,
+     *      minHeightMessage = "La hauteur de l'image est insufisante ({{ height }}px). La hauteur minimum est de {{ min_height }}px.",
      *      maxSize="6M"
      * )
      */
